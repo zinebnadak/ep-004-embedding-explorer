@@ -31,14 +31,26 @@ SENTENCES = [
 
 EMBEDDING_MODEL = "/Users/nadak/models/all-MiniLM-L6-v2"
 
+
 @st.cache_resource
 def load_model():
     return SentenceTransformer(EMBEDDING_MODEL)
 
+
 @st.cache_data
 def get_embeddings(sentences):
     model = load_model()
-    embeddings = model.encode(sentences, normalize_embeddings=True) #takes list of sentences and returns a list of vectors 
+    embeddings = model.encode(sentences, normalize_embeddings=True) 
     return embeddings
 
-st.write(get_embeddings(SENTENCES))
+def cosine_similarity(vec_a, vec_b):
+    dot = np.dot(vec_a, vec_b)
+    magnitude_a = np.linalg.norm(vec_a)
+    magnitude_b = np.linalg.norm(vec_b)
+    return dot / (magnitude_a * magnitude_b) 
+
+#Test:
+embeddings = get_embeddings(SENTENCES)
+score = cosine_similarity(embeddings[0], embeddings[1])
+st.write(f'Sentance 1: "{SENTENCES[0]}" .Sentence 2: "{SENTENCES[1]}"')
+st.write("similarity between sentence 0 and 1:", score)
