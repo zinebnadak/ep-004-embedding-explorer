@@ -2,9 +2,6 @@ import numpy as np
 import streamlit as st
 from sentence_transformers import SentenceTransformer
 
-st.title("Embedding explorer")
-
-
 SENTENCES = [
     # Group 1: Animals
     "The quick brown fox jumps over the lazy dog.",
@@ -57,5 +54,18 @@ def build_similarity_matrix(embeddings):
             matrix[i][j] = cosine_similarity(embeddings[i], embeddings[j])
     return matrix 
 
-embeddings = get_embeddings(SENTENCES)
-st.write(build_similarity_matrix(embeddings))
+def main():
+    st.set_page_config(page_title="Embedding Explorer", layout="wide")
+    st.title("Embedding Explorer")
+    with st.sidebar:
+        st.header("Sentences")
+        sentences = []
+        for index, sentence in enumerate(SENTENCES):
+            edited = st.text_input(f"{index+1}.", value = sentence, key = f"sent_{index}")
+            sentences.append(edited)
+    embeddings = get_embeddings(tuple(sentences))
+    matrix = build_similarity_matrix(embeddings)
+
+if __name__ == "__main__":
+    main()
+
