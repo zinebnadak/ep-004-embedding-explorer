@@ -38,7 +38,7 @@ def load_model():
 @st.cache_data
 def get_embeddings(sentences):
     model = load_model()
-    embeddings = model.encode(sentences)
+    embeddings = model.encode(sentences, normalize_embeddings=True) #takes list of sentences and returns a list of vectors 
     return embeddings
 
-st.write(f"Generated embeddings shape: {get_embeddings(SENTENCES).shape}") 
+st.write(get_embeddings(SENTENCES))
