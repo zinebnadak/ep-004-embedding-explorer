@@ -49,8 +49,13 @@ def cosine_similarity(vec_a, vec_b):
     magnitude_b = np.linalg.norm(vec_b)
     return dot / (magnitude_a * magnitude_b) 
 
-#Test:
+def build_similarity_matrix(embeddings):
+    n = len(embeddings)
+    matrix = np.zeros((n, n))
+    for i in range (n):
+        for j in range (n):
+            matrix[i][j] = cosine_similarity(embeddings[i], embeddings[j])
+    return matrix 
+
 embeddings = get_embeddings(SENTENCES)
-score = cosine_similarity(embeddings[0], embeddings[1])
-st.write(f'Sentance 1: "{SENTENCES[0]}" .Sentence 2: "{SENTENCES[1]}"')
-st.write("similarity between sentence 0 and 1:", score)
+st.write(build_similarity_matrix(embeddings))
