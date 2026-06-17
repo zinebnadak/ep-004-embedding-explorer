@@ -81,5 +81,14 @@ def main():
 
             cols[j+1].markdown(f'<div style="background:{color};padding:4px;text-align:center;'f'font-size:10px;">{score:.2f}</div>', unsafe_allow_html=True)
 
+    st.subheader("Pair Explorer")
+    index_a = st.selectbox("Sentance A", range(n),
+                           format_func= lambda i: sentences[i])
+    index_b = st.selectbox("Sentance B", range(n), index=1,
+                           format_func= lambda i: sentences[i])
+    
+    score = matrix[index_a][index_b]
+    st.metric("Similarity", f"{score}")
+
 if __name__ == "__main__":
     main()
