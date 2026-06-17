@@ -66,6 +66,20 @@ def main():
     embeddings = get_embeddings(tuple(sentences))
     matrix = build_similarity_matrix(embeddings)
 
+    st.subheader("Similarity Matrix")
+
+    n = len(sentences)
+    cols = st.columns(n+1)
+
+    for i in range(n):
+        for j in range(n):
+            score = matrix[i][j]
+
+            red = int(255*(1-score))
+            green = int(255*score)
+            color = f"rgb({red},{green},80)"
+
+            cols[j+1].markdown(f'<div style="background:{color};padding:4px;text-align:center;'f'font-size:10px;">{score:.2f}</div>', unsafe_allow_html=True)
+
 if __name__ == "__main__":
     main()
-
