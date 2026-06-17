@@ -69,9 +69,10 @@ def main():
     st.subheader("Similarity Matrix")
 
     n = len(sentences)
-    cols = st.columns(n+1)
 
     for i in range(n):
+        cols = st.columns(n+1)
+        cols[0].markdown(f"{i+1}.")
         for j in range(n):
             score = matrix[i][j]
 
@@ -82,9 +83,9 @@ def main():
             cols[j+1].markdown(f'<div style="background:{color};padding:4px;text-align:center;'f'font-size:10px;">{score:.2f}</div>', unsafe_allow_html=True)
 
     st.subheader("Pair Explorer")
-    index_a = st.selectbox("Sentance A", range(n),
+    index_a = st.selectbox("Sentence A", range(n),
                            format_func= lambda i: sentences[i])
-    index_b = st.selectbox("Sentance B", range(n), index=1,
+    index_b = st.selectbox("Sentence B", range(n), index=1,
                            format_func= lambda i: sentences[i])
     
     score = matrix[index_a][index_b]
@@ -104,3 +105,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# fix: sentence numbers down the left side 
