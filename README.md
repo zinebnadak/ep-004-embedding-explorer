@@ -1,6 +1,8 @@
 # Episode 004 — Embedding explorer
 
-> No single number in a vector means anything, the meaning lives in the relationship between them (cosine similarity score (-1) - 1)
+> No single number in a vector means anything, the meaning lives in the relationship between them (cosine similarity score from "-1" to "1")
+
+<img src="images/full_pic.png" width="600">
 
 ## The Problem / The Question
 Is it possible to visualise what embeddings actually are?
@@ -20,6 +22,11 @@ A tool that takes 15 sentences, turns each one into a vector of 384 numbers usin
 - st.write() — using it as a debugging tool in Streamlit. Same job as print() in regular Python. Dump anything you want to inspect directly onto the page.
 - unsafe_allow_html=True — lets you write raw HTML inside a Streamlit markdown string rendered directly. That's what I used to colour the heatmap cells.
 
+## Tech Used
+> Model: [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) — 22.7M parameters, 80MB, runs fully offline. Maps each sentence to a 384-dimensional vector. Quite small, making it a practical choice. Found on [Huggingface](https://huggingface.co/models) -> Tasks -> Feature Extraction -> libraries -> sentence-transformers -> Sort by Most Downloads
+- sentence-transformers — downloads and runs the embedding model locally
+- numpy — math library, cosine similarity written from scratch
+- streamlit — turns a Python file into a web app, no HTML needed
 
 ## How to Run
 Clone the repo:
@@ -76,14 +83,6 @@ print(api.whoami()['name'])
 ````
 streamlit run app.py
 ````
-
-
-
-## Tech Used
-> Model: [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) — 22.7M parameters, 80MB, runs fully offline. Maps each sentence to a 384-dimensional vector. Quite small, making it a practical choice. Found on [Huggingface](https://huggingface.co/models) -> Tasks -> Feature Extraction -> libraries -> sentence-transformers -> Sort by Most Downloads
-- sentence-transformers — downloads and runs the embedding model locally
-- numpy — math library, cosine similarity written from scratch
-- streamlit — turns a Python file into a web app, no HTML needed
 
 ## Tests 
 ### Each row is a sentance with 384 vector embeddings. No comparison or similarity scores displayed yet.
