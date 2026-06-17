@@ -90,5 +90,17 @@ def main():
     score = matrix[index_a][index_b]
     st.metric("Similarity", f"{score}")
 
+    st.subheader("Most Similar Pairs")
+    pairs = []
+    for i in range(n):
+        for j in range(i+1,n): #start j above so it do not repeat pairs
+            pairs.append((matrix[i][j], i, j))
+
+    pairs.sort(reverse=True) #highest score first
+
+    for score, i, j in pairs[:5]:
+        st.write(f"{score} - {sentences[i]} <-> {sentences[j]}")
+
+
 if __name__ == "__main__":
     main()
