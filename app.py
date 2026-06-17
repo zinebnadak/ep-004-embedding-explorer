@@ -3,26 +3,21 @@ import streamlit as st
 from sentence_transformers import SentenceTransformer
 
 SENTENCES = [
-    # Group 1: Animals
-    "The quick brown fox jumps over the lazy dog.",
-    "A dark-colored fox leaps above a sleepy canine.",
-    "A sly fox swiftly moves past a tired hound.",
-    "Dogs are loyal companions and love to play fetch.",
-    "Foxes and dogs are both members of the canine family.",
-
-    # Group 2: Technology/AI
-    "Artificial intelligence is transforming the world.",
-    "Machine learning algorithms are advancing rapidly.",
-    "Deep learning is a powerful branch of artificial intelligence.",
-    "Robots powered by AI are becoming more common in industry.",
-    "Natural language processing helps computers understand text.",
-
-    # Group 3: Food
-    "Pizza is my favorite food to eat on weekends.",
-    "I love making homemade pizza with fresh ingredients.",
-    "Burgers and fries are a classic fast food combination.",
-    "Sushi is a popular Japanese dish made with rice and fish.",
-    "Many people enjoy ice cream as a dessert in the summer."
+    "I love pizza.",
+    "I baked fresh bread today.",
+    "Food is my favorite topic.",
+    "The dog ran across the park.",
+    "My cat sleeps all day.",
+    "Animals are fascinating creatures.",
+    "The robot completed the task.",
+    "Artificial intelligence is changing everything.",
+    "Computers process data very fast.",
+    "We had a delicious meal tonight.",
+    "Cars are getting more expensive.",
+    "BMW makes luxury vehicles.",
+    "Mercedes is a premium car brand.",
+    "Audi is known for its design.",
+    "The kitten played with a ball of yarn.",
 ]
 
 
@@ -106,4 +101,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# fix: sentence numbers down the left side 
+ 
